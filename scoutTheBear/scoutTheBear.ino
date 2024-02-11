@@ -35,6 +35,7 @@ void loop() {
     flapEars();
   }
   if (digitalRead(PAWPIN4) == HIGH) {
+    // Loop using randomNum for the amount of times the led flashes
     for(int i = 0; i < randomNum(); i++) {
       digitalWrite(LEDPIN, HIGH);
       delay(500);
@@ -44,6 +45,8 @@ void loop() {
   }
 }
 
+
+// This is a small function used to shorten copy and paste code in the main loop and instead only call this function used to flap ears.
 void flapEars() {
   for (int i = 0; i < 3; i++) { 
     rightEar.write(0)
@@ -56,6 +59,7 @@ void flapEars() {
   
 }
 
+// Returns a random number between 2 and 15
 void randomNum() {
   return random(2, 15)
 }
