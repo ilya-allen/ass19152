@@ -1,5 +1,6 @@
 #include <Servo.h>
 
+// Const Variables
 const MICPIN = 8;
 const SERVOPIN = 10;
 const LOUDLEVEL = 500;
@@ -10,7 +11,7 @@ bool lock = false;
 Servo boxServo;
 
 
-
+// Setting Up Pins
 void setup() {
   // put your setup code here, to run once:
   pinMode(MICPIN, INPUT);
@@ -18,6 +19,7 @@ void setup() {
   boxServo.attach(SERVOPIN);
 }
 
+// Loop Containing lock system and knocking system
 void loop() {
   int micRead = analogRead(MICPIN);
 
