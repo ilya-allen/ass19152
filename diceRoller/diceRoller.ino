@@ -42,28 +42,28 @@ void rollDice(numberOfSides) {
   int diceNum = 0;
   switch (numberOfSides) {
     case (1):
-      screen.print('The num is: ')
       diceNum = random(1, 4);
+      screen.print('The num is:' + diceNum)
       break;
     case (2):
-      screen.print('The num is: ')
       diceNum = random(1, 6);
+      screen.print('The num is:' + diceNum)
       break;
     case (3):
-      screen.print('The num is: ')
       diceNum = random(1, 8);
+      screen.print('The num is:' + diceNum)
       break;
     case (4):
-      screen.print('The num is: ')
       diceNum = random(1, 12);
+      screen.print('The num is:' + diceNum)
       break;
     case (5):
-      screen.print('The num is: ')
       diceNum = random(1, 18);
+      screen.print('The num is:' + diceNum)
       break;
     case (6):
-      screen.print('The num is: ')
       diceNum = random(1, 20);
+      screen.print('The num is:' + diceNum)
       break;
     default:
       Serial.println('Problem with mapping')
