@@ -1,9 +1,14 @@
+<<<<<<< HEAD
 #include <Wire.h>
 #include <SparkFun_Qwiic_OpenLog_Arduino_Library.h>
 OpenLog sdCard; //Create instance
 
 const String FILENAME = "joke.txt";
 
+=======
+// Im sorry I wasnt sure how to define the library or where coding examples were however this has library added.
+//HAN COMMENT we will click on tools menu and then manage libraries and search for the openlog library
+>>>>>>> 70e36a3872106ad8b33d7d6ca62b7de8ea612356
 void setup() {
   Wire.begin();
   sdCard.begin(); //Open connection to OpenLog (no pun intended)
