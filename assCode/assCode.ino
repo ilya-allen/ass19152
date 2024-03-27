@@ -36,7 +36,7 @@ void loop() {
   
 
   if(millis() % 100 == 0) {
-    newLine(pressureValue, tempValue)
+    newLine(pressureValue, tempValue);
   }
 
 
@@ -44,10 +44,10 @@ void loop() {
 
 // This function will be called every time the  milliseconds is a multiple of 100 and instead of constantly 
 // sending multiple print lines we can save coding space by calling a function with input into the parameters
-void newLine(pressureVal, tempVal) {
-  sdCard.println("It has been " + (millis() / 10S00) " seconds since the board has turned on");
-  sdCard.println("The pressure value is: " + pressureVal);
-  sdCard.println("The temperature value is: " + tempVal);
+void newLine(int pressure, int temp) {
+  sdCard.println("It has been " + (millis() / 1000) " seconds since the board has turned on");
+  sdCard.println("The pressure value is: " + pressure);
+  sdCard.println("The temperature value is: " + temp);
   sdCard.syncFile();
-  return linesCreated += 3;`
+  return linesCreated += 3;
 }
