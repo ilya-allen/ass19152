@@ -44,11 +44,11 @@ void loop() {
 // This function will be called every time the  milliseconds is a multiple of 100 and instead of constantly 
 // sending multiple print lines we can save coding space by calling a function with input into the parameters
 void newLine(int pressure, int temp) {
-  String lineIntro = {"The amount of seconds since the board has turned on is: ", "The pressure value is: ", "The temperature value is: "};
-  int lineValues = {millis(), pressure, temp};
+  String lineIntro[] = {"The amount of seconds since the board has turned on is: ", "The pressure value is: ", "The temperature value is: "};
+  int lineValues[] = {millis(), pressure, temp};
   
   for (int i = 0; i <= 3; ++i) {
-    sdCard.println(lineIntro[i], lineValues[i]);
+    sdCard.println(lineIntro[i] + lineValues[i]);
   }
   sdCard.syncFile();
   return linesCreated += 3;
