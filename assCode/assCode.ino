@@ -28,13 +28,12 @@ void setup() {
 
 
 // This is the main loop containing code  that will take in values realtime and send updates to the
-// csv file every 100ms using the divisible operator.
 // Functionality implication
 void loop() {
   pressureValue = pressureSensor.getPressure_hPa();
   tempValue = pressureSensor.getTemperature_degC();
   
-//TEACHER COMMENTS what is this chunk of code doing?
+  // The csv file is updated with a new line every 100ms using the divisible operator through the if statement.
   if(millis() % 100 == 0) {
     newLine(pressureValue, tempValue);
   }
