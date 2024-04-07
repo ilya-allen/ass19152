@@ -22,7 +22,8 @@ void setup() {
   Wire.begin();
   sdCard.begin();
   sdCard.append(FILENAME);
-
+//TEACHER COMMENTS I might suggest some checks on if the sdCard and pressure sensor have been turned on correctly go here
+  
 }
 
 
@@ -33,7 +34,7 @@ void loop() {
   pressureValue = pressureSensor.getPressure_hPa();
   tempValue = pressureSensor.getTemperature_degC();
   
-
+//TEACHER COMMENTS what is this chunk of code doing?
   if(millis() % 100 == 0) {
     newLine(pressureValue, tempValue);
   }
@@ -41,6 +42,8 @@ void loop() {
 
 }
 
+//TEACHER COMMENTS check what the csv file should look like with the example on classroom - you might keep this one for error checking and have another that 
+//is more suitable for writing to the file
 // This function will be called every time the  milliseconds is a multiple of 100 and instead of constantly 
 // sending multiple print lines we can save coding space by calling a function with input into the parameters
 void newLine(int pressure, int temp) {
