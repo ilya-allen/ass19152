@@ -15,7 +15,7 @@ int pressureValue = 0;
 int tempValue = 0;
 
 // Constant Variables (Non-Changeable)
-const String FILENAME = "tempAndPressure.txt";
+const String FILENAME = "testFile.txt";
 
 // Setup for the csv file so that it is named and ready to receive information
 void setup() {
@@ -23,7 +23,7 @@ void setup() {
   sdCard.begin();
   sdCard.append(FILENAME);
 //TEACHER COMMENTS I might suggest some checks on if the sdCard and pressure sensor have been turned on correctly go here
-  
+  sdCard.println('new test file');
 }
 
 
@@ -34,9 +34,12 @@ void loop() {
   tempValue = pressureSensor.getTemperature_degC();
   
   // The csv file is updated with a new line every 100ms using the divisible operator through the if statement.
-  if(millis() % 100 == 0) {
-    newLine(pressureValue, tempValue);
-  }
+  // if(millis() % 100 == 0) {
+  
+  // TESTING 
+  newLine(pressureValue, tempValue);
+  sdCard.println('testing');
+  // }
 
 
 }
