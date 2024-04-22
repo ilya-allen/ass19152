@@ -56,5 +56,6 @@ void newLine(int pressure, int temp) {
     sdCard.println(lineIntro[i] + lineValues[i]);
   }
   sdCard.syncFile();
-  return linesCreated += 3;
+  //TEACHER COMMENTS you have a void method so it returns nothing
+  //return linesCreated += 3;
 }
