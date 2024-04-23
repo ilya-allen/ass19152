@@ -2,7 +2,7 @@
 
 // Non-Core Libraries used for external functions
 #include <Wire.h>
-#include <SparkFun_Qwiic_OpenLog_Arduino_Library.h>
+#include "SparkFun_Qwiic_OpenLog_Arduino_Library.h"
 #include <SparkFun_LPS25HB_Arduino_Library.h>
 
 // Creates instances like variables so they can be used with the external libraries
@@ -15,15 +15,20 @@ int pressureValue = 0;
 int tempValue = 0;
 
 // Constant Variables (Non-Changeable)
-const String FILENAME = "testFile.txt";
+const String FILENAME = "newTest.txt";
 
 // Setup for the csv file so that it is named and ready to receive information
 void setup() {
   Wire.begin();
   sdCard.begin();
+  sdCard.create(FILENAME);
   sdCard.append(FILENAME);
+  sdCard.syncFile();
+  Serial.begin(9600);
 //TEACHER COMMENTS I might suggest some checks on if the sdCard and pressure sensor have been turned on correctly go here
-  sdCard.println('new test file');
+  sdCard.println("new test file");
+  Serial.println("yurr");
+
 }
 
 
@@ -38,8 +43,10 @@ void loop() {
   
   // TESTING 
   newLine(pressureValue, tempValue);
-  sdCard.println('testing');
+  sdCard.println("testing");
   // }
+
+  sdCard.syncFile();
 
 
 }
@@ -56,6 +63,5 @@ void newLine(int pressure, int temp) {
     sdCard.println(lineIntro[i] + lineValues[i]);
   }
   sdCard.syncFile();
-  //TEACHER COMMENTS you have a void method so it returns nothing
-  //return linesCreated += 3;
+  linesCreated += 3;
 }
