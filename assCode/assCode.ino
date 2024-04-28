@@ -22,6 +22,7 @@ const String FILENAME = "newTest.txt";
 void setup() {
   Wire.begin();
   sdCard.begin();
+  pressureSensor.begin();
   sdCard.create(FILENAME);
   sdCard.append(FILENAME);
   sdCard.syncFile();
