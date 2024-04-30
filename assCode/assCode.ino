@@ -41,12 +41,12 @@ void loop() {
   tempValue = pressureSensor.getTemperature_degC();
   
   // The csv file is updated with a new line every 100ms using the divisible operator through the if statement.
-  // if(millis() % 100 == 0) {
+  if(millis() % 100 == 0) {
   
   // TESTING 
-  newLine(pressureValue, tempValue);
-  sdCard.println("testing");
-  // }
+    newLine(pressureValue, tempValue);
+    sdCard.println("testing");
+  }
 
   sdCard.syncFile();
 
