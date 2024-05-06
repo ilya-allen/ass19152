@@ -18,21 +18,22 @@ int pressureValue = 0;
 int tempValue = 0;
 
 
-// Constant Variables (Non-Changeable)
+// Constant (non changing variable) that names the file
 const String FILENAME = "tempAndPressure.txt";
 
 
-// Setup for the csv file so that it is named and ready to receive information
+// VOID Setup is ran before the loop and everything inside are usually setup commands
 void setup() {
- 
 
-
+  // All Begin statements are used to turn on and make sure that all commands using the external libraries are functioning
   Wire.begin();
-  sdCard.begin(); //Open connection to OpenLog (no pun intended)
+  sdCard.begin();
   valSensor.begin();
-  sdCard.append("tempAndPressureValues.txt");
 
+  // Change the name of the file from default "LOG" to the custom name
+  sdCard.append(FILENAME);
 
+  // To Save the file and give it a beginning text for those reading
   sdCard.println("This is Il'ya's File");
   sdCard.syncFile();
 }
@@ -40,33 +41,30 @@ void setup() {
 
 
 
-// This is the main loop containing code  that will take in values realtime and send updates to the
-// csv file every 100ms using the divisible operator.
-// Functionality implication
+// In VOID Loop, everything inside the brackets gets infinitely looped over for as long as the program is on
 void loop() {
+  // The value variables are constantly updating to get the value of either the pressure or temperature
   pressureValue = valSensor.getPressure_hPa();
   tempValue = valSensor.getTemperature_degC();
- 
-  sdCard.print("yo");
 
-
+  // Function Call for the newLine function
   newLine(pressureValue, tempValue);
-
-
-
 
 }
 
 
-// This function will be called every time the  milliseconds is a multiple of 100 and instead of constantly
-// sending multiple print lines we can save coding space by calling a function with input into the parameters
+// The New Line function creates informatipon lines for the sd card and its value readings
 void newLine(int pressure, int temp) {
+  // First Array is for the user interface reading and the second array is the values for users to read
   String lineIntro[] = {"The amount of seconds since the board has turned on is: ", "The pressure value is: ", "The temperature value is: "};
   int lineValues[] = {millis(), pressure, temp};
- 
+
+  // The for loop is used to reduce the copy and past code and instead creates three lines of information with only one line of code inside the loop
   for (int i = 0; i <= 3; ++i) {
     sdCard.println(lineIntro[i] + lineValues[i]);
   }
+
+  // Saves file and gives coders information about how many lines of information was created
   sdCard.syncFile();
   return linesCreated += 3;
 }
