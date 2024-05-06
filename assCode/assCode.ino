@@ -57,7 +57,7 @@ void loop() {
 void newLine(int pressure, int temp) {
   // First Array is for the user interface reading and the second array is the values for users to read
   String lineIntro[] = {"The amount of seconds since the board has turned on is: ", "The pressure value is: ", "The temperature value is: "};
-  int lineValues[] = {millis(), pressure, temp};
+  int lineValues[] = {millis() / 100, pressure, temp};
 
   // The for loop is used to reduce the copy and past code and instead creates three lines of information with only one line of code inside the loop
   for (int i = 0; i <= 3; ++i) {
