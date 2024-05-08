@@ -1,5 +1,5 @@
 /* assesment code */
-
+// Documentation work done
 
 // Non-Core Libraries used for external functions
 #include <Wire.h>
