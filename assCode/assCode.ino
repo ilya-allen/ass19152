@@ -35,7 +35,7 @@ void setup() {
   sdCard.append(FILENAME);
 
   // To Save the file and give it a beginning text for those reading
-  sdCard.println("This is Il'ya's File");
+  sdCard.println("Time,Pressure,Temperature");
   sdCard.syncFile();
 }
 
@@ -48,12 +48,22 @@ void loop() {
   pressureValue = valSensor.getPressure_hPa();
   tempValue = valSensor.getTemperature_degC();
 
+  sdCard.println(millis() + "," + pressureValue + "," + tempValue)
+  
+  // TESTING CODE
+  /*
   // Function Call for the newLine function
   newLine(pressureValue, tempValue);
+  */
 
 }
 
 
+// TESTING CODE
+// TESTING CODE
+// TESTING CODE
+
+/*
 // The New Line function creates informatipon lines for the sd card and its value readings
 void newLine(int pressure, int temp) {
   // First Array is for the user interface reading and the second array is the values for users to read
@@ -69,4 +79,4 @@ void newLine(int pressure, int temp) {
   sdCard.syncFile();
   return linesCreated += 3;
 }
-
+*/
