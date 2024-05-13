@@ -58,6 +58,10 @@ void loop() {
 
 }
 
+void inputChecker() {
+  
+}
+
 
 // TESTING CODE
 // TESTING CODE
