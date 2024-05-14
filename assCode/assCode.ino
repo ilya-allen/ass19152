@@ -8,6 +8,7 @@
 #include <SparkFun_LPS25HB_Arduino_Library.h>
 
 
+
 // Creates instances like variables so they can be used with the external libraries
 OpenLog sdCard;
 LPS25HB valSensor;
@@ -59,7 +60,17 @@ void loop() {
 }
 
 void inputChecker() {
-  
+  #define STATUS_SD_INIT_GOOD 0
+  byte cardStatus = sdCard.getStatus();
+
+  if (cardStatus == 0xFF) {
+    Serial.println("SD CARD readings unavailable to respond.")
+  }
+  if (status & 1<<STATUS_SD_INIT_GOOD) {
+    Serial.println("SD Card is reading and present.")
+  } else {
+    Serial.println("SD initialisation failure. Check SD Card!")
+  }
 }
 
 
