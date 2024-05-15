@@ -7,12 +7,9 @@
 #include <SparkFun_Qwiic_OpenLog_Arduino_Library.h>
 #include <SparkFun_LPS25HB_Arduino_Library.h>
 
-
-
 // Creates instances like variables so they can be used with the external libraries
 OpenLog sdCard;
 LPS25HB valSensor;
-
 
 // Changing variables (Changeable variables)
 int linesCreated = 0;
@@ -31,7 +28,8 @@ void setup() {
   Wire.begin();
   sdCard.begin();
   valSensor.begin();
-
+  cardChecker();
+  
   // Change the name of the file from default "LOG" to the custom name
   sdCard.append(FILENAME);
 
@@ -48,37 +46,35 @@ void loop() {
   // The value variables are constantly updating to get the value of either the pressure or temperature
   pressureValue = valSensor.getPressure_hPa();
   tempValue = valSensor.getTemperature_degC();
+  int secondsPassed = millis() / 100;
 
-  sdCard.println(millis() + "," + pressureValue + "," + tempValue)
-  
-  // TESTING CODE
-  /*
-  // Function Call for the newLine function
-  newLine(pressureValue, tempValue);
-  */
+  format(false, pressureValue, tempValue, secondsPassed);
 
 }
 
-void inputChecker() {
+void format(boolean info, int pressure, int temp, int time) {
+  if(info == true) {
+    newLine(pressure, temp)
+  } else {
+    sdCard.println(String(time) + "," + String(pressure) + "," + String(temp));
+  }
+}
+
+void cardChecker() {
   #define STATUS_SD_INIT_GOOD 0
   byte cardStatus = sdCard.getStatus();
 
   if (cardStatus == 0xFF) {
-    Serial.println("SD CARD readings unavailable to respond.")
+    Serial.println("SD CARD readings unavailable to respond.");
   }
-  if (status & 1<<STATUS_SD_INIT_GOOD) {
-    Serial.println("SD Card is reading and present.")
+  if (cardStatus & 1<<STATUS_SD_INIT_GOOD) {
+    Serial.println("SD Card is reading and present.");
   } else {
-    Serial.println("SD initialisation failure. Check SD Card!")
+    Serial.println("SD initialisation failure. Check SD Card!");
   }
 }
 
 
-// TESTING CODE
-// TESTING CODE
-// TESTING CODE
-
-/*
 // The New Line function creates informatipon lines for the sd card and its value readings
 void newLine(int pressure, int temp) {
   // First Array is for the user interface reading and the second array is the values for users to read
@@ -92,6 +88,6 @@ void newLine(int pressure, int temp) {
 
   // Saves file and gives coders information about how many lines of information was created
   sdCard.syncFile();
-  return linesCreated += 3;
+  sdCard.println("lines created are:" + String(linesCreated += 3));
 }
-*/
+
