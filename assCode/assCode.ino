@@ -16,7 +16,6 @@ int linesCreated = 0;
 int pressureValue = 0;
 int tempValue = 0;
 
-
 // Constant (non changing variable) that names the file
 const String FILENAME = "tempAndPressure.txt";
 
@@ -24,7 +23,7 @@ const String FILENAME = "tempAndPressure.txt";
 // VOID Setup is ran before the loop and everything inside are usually setup commands
 void setup() {
 
-  // All Begin statements are used to turn on and make sure that all commands using the external libraries are functioning
+  // All Begin statements are used to turn on and make sure that all commands using the external libraries are functioning. Includes a cardChecker call to test for invalidity with the sd Card.
   Wire.begin();
   sdCard.begin();
   valSensor.begin();
@@ -38,9 +37,6 @@ void setup() {
   sdCard.syncFile();
 }
 
-
-
-
 // In VOID Loop, everything inside the brackets gets infinitely looped over for as long as the program is on
 void loop() {
   // The value variables are constantly updating to get the value of either the pressure or temperature
@@ -48,10 +44,12 @@ void loop() {
   tempValue = valSensor.getTemperature_degC();
   int secondsPassed = millis() / 100;
 
+  // Calls the format function which can be chosen for either debbuging or csv format.
   format(false, pressureValue, tempValue, secondsPassed);
-
 }
 
+// This function is to be called in the void loop. If the format function is called with true at the front it will run the debug version which calls the new line function which can be used to help the user find anything wrong with the outputs or the code.
+// If the function is called with false, it will run the main csv format used for expierenced users needing their data in csv format.
 void format(boolean info, int pressure, int temp, int time) {
   if(info == true) {
     newLine(pressure, temp)
@@ -60,6 +58,8 @@ void format(boolean info, int pressure, int temp, int time) {
   }
 }
 
+// This function is used to check invalid input and whether or not the SD card is inside the slot. If the SD card is not in the slot it will send a serial statement telling the user that no lines will be written as there is no card.
+// This is a part of the invalid input testing case. If the SD Card is there then a serial print line statement will be sent to confirm the sd card is in.
 void cardChecker() {
   #define STATUS_SD_INIT_GOOD 0
   byte cardStatus = sdCard.getStatus();
@@ -73,7 +73,6 @@ void cardChecker() {
     Serial.println("SD initialisation failure. Check SD Card!");
   }
 }
-
 
 // The New Line function creates informatipon lines for the sd card and its value readings
 void newLine(int pressure, int temp) {
