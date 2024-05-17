@@ -1,6 +1,4 @@
-/* assesment code */
-// Documentation work done
-// Setup for tomorrow
+/* Il'ya Allen Assesment Code */
 
 // Non-Core Libraries used for external functions
 #include <Wire.h>
@@ -61,13 +59,15 @@ void format(boolean info, int pressure, int temp, int time) {
 // This function is used to check invalid input and whether or not the SD card is inside the slot. If the SD card is not in the slot it will send a serial statement telling the user that no lines will be written as there is no card.
 // This is a part of the invalid input testing case. If the SD Card is there then a serial print line statement will be sent to confirm the sd card is in.
 void cardChecker() {
-  #define STATUS_SD_INIT_GOOD 0
+  // This will take a hexidecimal number from the board and each different number explains a different status of the SD Card in the board
   byte cardStatus = sdCard.getStatus();
 
+  // This Hexadecimal means that SD Card is missing and no data will be written as there is no SD Card inside
   if (cardStatus == 0xFF) {
-    Serial.println("SD CARD readings unavailable to respond.");
+    Serial.println("SD CARD readings unavailable to respond. Most likely no SD Card inserted");
   }
-  if (cardStatus & 1<<STATUS_SD_INIT_GOOD) {
+  // This status means that the SD Card is available and ready to read. If it is not this status then it is another problem related to the SD Card meaning it is unable to initialise.
+  if (cardStatus & 1<<0) {
     Serial.println("SD Card is reading and present.");
   } else {
     Serial.println("SD initialisation failure. Check SD Card!");
