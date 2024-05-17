@@ -50,7 +50,7 @@ void loop() {
 // If the function is called with false, it will run the main csv format used for expierenced users needing their data in csv format.
 void format(boolean info, int pressure, int temp, int time) {
   if(info == true) {
-    newLine(pressure, temp)
+    newLine(pressure, temp);
   } else {
     sdCard.println(String(time) + "," + String(pressure) + "," + String(temp));
   }
@@ -89,4 +89,3 @@ void newLine(int pressure, int temp) {
   sdCard.syncFile();
   sdCard.println("lines created are:" + String(linesCreated += 3));
 }
-
