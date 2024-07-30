@@ -1,5 +1,7 @@
 /* Il'ya Allen Assesment Code */
 
+/* paperwork 30th august */
+
 // Non-Core Libraries used for external functions
 #include <Wire.h>
 #include <SparkFun_Qwiic_OpenLog_Arduino_Library.h>
